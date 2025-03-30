@@ -31,11 +31,7 @@ export class CreateComponent{
         {
           title: this.form.controls.title.value,
       }).subscribe((data)=>{
-        this.matSnackBar.open('Produto cadastrado com sucesso!','Ok',{
-          duration: 3000,
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-        });
+        this.matSnackBar.open('Produto cadastrado com sucesso!','Ok')
         this.router.navigateByUrl('/');
       });
     }    
