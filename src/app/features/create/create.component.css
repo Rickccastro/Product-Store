@@ -1,5 +1,11 @@
 .form-container{
     display: flex;
+    justify-content: center;
+}
+
+.form-content-container{
+    display: flex;
     flex-direction: column;
-    width: 450px;
+    width: 100%;
+    max-width: 450px;
 }
