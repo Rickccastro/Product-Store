@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component,OnInit,inject } from '@angular/core';
+import { ProductsService } from '../../shared/services/products.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -11,16 +12,22 @@ import {MatInputModule} from '@angular/material/input';
   templateUrl: './create.component.html',
   styleUrl: './create.component.css'
 })
-export class CreateComponent {
+export class CreateComponent{
+    productsService = inject(ProductsService);
+
     form = new FormGroup(
       {
         title : new FormControl<string>('',{nonNullable : true, validators: Validators.required}),
       }
-    );
+    );    
 
     onSubmit() 
     {
-      this.form.controls['title'].value;
-
+      this.productsService.cadastroProduto(
+        {
+          title: this.form.controls.title.value,
+      }).subscribe((data)=>{
+       alert('Produto cadastrado com sucesso!');
+      });
     }    
 }

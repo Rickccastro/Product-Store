@@ -1,8 +1,16 @@
 {
-    "products": [
-        {
-            "id": "1",
-            "title": "Produto Teste"
-        }
-    ]
+  "products": [
+    {
+      "id": "1",
+      "title": "Produto Teste"
+    },
+    {
+      "id": "fa4f",
+      "title": "ksoksaosako"
+    },
+    {
+      "id": "1632",
+      "title": "ksoksaosako"
+    }
+  ]
 }
