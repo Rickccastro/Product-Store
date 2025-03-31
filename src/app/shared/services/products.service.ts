@@ -14,7 +14,13 @@ export class ProductsService {
     return this.httpClient.get<Product[]>('/api/products');
   }
 
+  getById(id: string){  
+    return this.httpClient.get<Product>(`/api/products/${id}`);
+ }
   cadastroProduto(payload: ProductPayload){
     return this.httpClient.post<ProductPayload>('/api/products', payload);
  }
+ atualizarProduto(id: string, payload: ProductPayload){
+  return this.httpClient.put<ProductPayload>(`/api/products/${id}`,payload);
+}
 }

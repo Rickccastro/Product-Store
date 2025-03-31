@@ -22,7 +22,7 @@ export class ListComponent implements OnInit{
     });
   }
 
-  onEdit(){
-    this.router.navigate(['/edit-product']) 
+  onEdit(product:Product){
+    this.router.navigate(['edit-product/',product.id]); 
   }
 }
