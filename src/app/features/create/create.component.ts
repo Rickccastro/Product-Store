@@ -1,36 +1,26 @@
-import { Component,OnInit,inject } from '@angular/core';
+import { Component,inject } from '@angular/core';
 import { ProductsService } from '../../shared/services/products.service';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Product } from '../../shared/interfaces/products.interface';
+import { FormComponent } from '../../shared/components/form/form.component';
 
 
 @Component({
   selector: 'app-create',
   standalone: true,
-  imports: [ReactiveFormsModule,MatFormFieldModule,MatInputModule,MatButtonModule],
+  imports: [FormComponent],
   templateUrl: './create.component.html',
   styleUrl: './create.component.css'
 })
 export class CreateComponent{
     productsService = inject(ProductsService);
     matSnackBar = inject(MatSnackBar);
-    router= inject(Router)
-    form = new FormGroup(
-      {
-        title : new FormControl<string>('',{nonNullable : true, validators: Validators.required}),
-      }
-    );    
-
-    onSubmit() 
+    router= inject(Router) 
+        
+    onSubmit(product: Product) 
     {
-      this.productsService.cadastroProduto(
-        {
-          title: this.form.controls.title.value,
-      }).subscribe((data)=>{
+      this.productsService.cadastroProduto(product).subscribe((data)=>{
         this.matSnackBar.open('Produto cadastrado com sucesso!','Ok')
         this.router.navigateByUrl('/');
       });
