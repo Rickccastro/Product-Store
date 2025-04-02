@@ -5,33 +5,10 @@ import { CardComponent } from './components/card/card.component';
 import { Router, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import {
-  MatDialog,
-  MatDialogModule,
-  MatDialogRef,
+  MatDialog
 } from '@angular/material/dialog';
 import { filter } from 'rxjs';
-
-@Component({
-  selector: 'app-confirm-dialog',
-  template: `<h1 mat-dialog-title>Delete file</h1>
-    <div mat-dialog-content >Tem certeza que deseja deletar o produto?</div>
-    <div mat-dialog-actions align="end">
-      <button mat-button mat-dialog-close (click)="onNo()">Não</button>
-      <button mat-raised-button color="primary" mat-dialog-close cdkFocusInitial (click)="onYes()">Sim</button>
-    </div>`,
-  standalone: true,
-  imports: [MatDialogModule, MatButtonModule],
-})
-export class ConfirmDialogComponent {
-  matDialogRef = inject(MatDialogRef);
-
-  onNo() {
-    this.matDialogRef.close(false);
-  }
-  onYes() {
-    this.matDialogRef.close(true);
-  }
-}
+import { ConfirmationDialogService } from '../../shared/services/confirmation-dialog.service';
 
 @Component({
   selector: 'app-list',
@@ -44,7 +21,8 @@ export class ListComponent implements OnInit {
   products: Product[] = [];
   productsService = inject(ProductsService);
   router = inject(Router);
-  matDialog = inject(MatDialog);
+  confirmationDialogService = inject(ConfirmationDialogService);
+
 
   ngOnInit(): void {
     this.productsService.getAll().subscribe((product) => {
@@ -57,12 +35,10 @@ export class ListComponent implements OnInit {
   }
 
   onDelete(product: Product) {
-    this.matDialog
-      .open(ConfirmDialogComponent)
-      .afterClosed()
-      .pipe(filter((answer: boolean) => answer === true))
-      .subscribe(() => {  
-        this.productsService.deletarProduto(product.id  ).subscribe({
+    this.confirmationDialogService.openDialog()
+      .pipe(filter((answer) => answer === true))
+      .subscribe(() => { 
+        this.productsService.deletarProduto(product.id).subscribe({
           next: () => {
             this.products = this.products.filter(p => p.id !== product.id);
           },
