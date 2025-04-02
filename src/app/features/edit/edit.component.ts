@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from '../../shared/services/products.service';
@@ -18,6 +18,7 @@ export class EditComponent {
   router = inject(Router);
   product: Product = inject(ActivatedRoute).snapshot.data['product'];
 
+  
   onSubmit(product: Product) {
     this.productsService
       .atualizarProduto(this.product.id, product)

@@ -1,8 +1,12 @@
 {
   "products": [
     {
-      "id": "79fc",
-      "title": "Produto1"
+      "title": "produto 1",
+      "id": "3078"
+    },
+    {
+      "id": "c9c6",
+      "title": "Produto 2"
     }
   ]
 }
