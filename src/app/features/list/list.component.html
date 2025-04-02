@@ -6,3 +6,6 @@
     {
         <app-card [product]="product" (edit)="onEdit(product)" (deletando)="onDelete(product)"></app-card>
     }
+    @empty {
+        <app-no-items></app-no-items>
+    }
