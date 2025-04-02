@@ -21,6 +21,9 @@ export class ProductsService {
     return this.httpClient.post<ProductPayload>('/api/products', payload);
  }
  atualizarProduto(id: string, payload: ProductPayload){
-  return this.httpClient.put<ProductPayload>(`/api/products/${id}`,payload);
+  return this.httpClient.put(`/api/products/${id}`,payload);
+}
+deletarProduto(id: string){
+  return this.httpClient.delete(`/api/products/${id}`);
 }
 }

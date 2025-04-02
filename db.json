@@ -1,32 +1,3 @@
 {
-  "products": [
-    {
-      "title": "sosao",
-      "id": "1"
-    },
-    {
-      "id": "fa4f",
-      "title": "ksoksaosako"
-    },
-    {
-      "id": "1632",
-      "title": "ksoksaosako"
-    },
-    {
-      "id": "3368",
-      "title": "shampoo"
-    },
-    {
-      "id": "dd4b",
-      "title": "sapato"
-    },
-    {
-      "id": "571e",
-      "title": "pppppp"
-    },
-    {
-      "id": "1dec",
-      "title": "novation"
-    }
-  ]
+  "products": []
 }

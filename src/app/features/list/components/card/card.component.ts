@@ -13,8 +13,7 @@ import { Product } from '../../../../shared/interfaces/products.interface';
 export class CardComponent {
   product = input.required<Product>();
   @Output() edit = new EventEmitter();
+  @Output() deletando = new EventEmitter();
+
   productTitle = computed(() => this.product().title)
-
-
-
 }
